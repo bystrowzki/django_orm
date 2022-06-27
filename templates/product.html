@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+    {% for data in phone %}
+            {{ data.name }}
+    {% endfor %}
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="header">
+            <h5>
+      <a href="{% url 'catalog' %}">Вернуться в каталог</a>
+    </h5>
+    <h1>{{ phone.name }}</h1>
+  </div>
+
+        <div class="content">
+            <td>
+                {% for data in phone %}
+                    <tr>
+                        <h3> {{ data.name }} </h3>
+                        <img src={{ data.image }} height="500">
+                        {% if data.lte_exist is True %}
+                            <p>Поддержка LTE: есть </p>
+                        {% else %}
+                            <p>Поддержка LTE: нет </p>
+                        {% endif %}
+                        <p>Дата выхода: {{ data.release_date }}</p>
+                        <p><big><b> Стоимость: {{ data.price }}р. </b></big></p>
+                    </tr>
+                {% endfor %}
+            </td>
+
+
+        </div>
+    </div>
+{% endblock %}
